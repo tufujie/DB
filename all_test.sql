@@ -25,6 +25,7 @@ CREATE TABLE all_test.`order_info` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT comment '系统订单ID',
   `extra_order_id` varchar(32) NOT NULL COMMENT '第三方订单ID',
   `shop_id` bigint(20) NOT NULL COMMENT '系统店铺ID',
+  `user_id` bigint(20) NOT NULL COMMENT '用户ID',
   PRIMARY KEY (`id`),
   UNIQUE KEY `order_shop` (`extra_order_id`,`shop_id`) COMMENT '同一个店铺不允许有相同订单号'
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
