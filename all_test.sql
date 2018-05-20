@@ -17,8 +17,8 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- 插入测试数据
-INSERT INTO `all_test`.`user` (`name`, `password`, `phone`, `age`) VALUES ('Jef', '123456', '18390220001', 20);
-INSERT INTO `all_test`.`user` (`name`, `password`, `phone`, `age`) VALUES ('Ran', '12345','18390220002', 19);
+INSERT INTO `all_test`.`user` (`name`, `password`, `phone`, `age`) VALUES ('Jef', 'e10adc3949ba59abbe56e057f20f883e', '18390220001', 20);
+INSERT INTO `all_test`.`user` (`name`, `password`, `phone`, `age`) VALUES ('Ran', 'e10adc3949ba59abbe56e057f20f883e','18390220002', 19);
 
 -- 新建测试订单表
 CREATE TABLE all_test.`order_info` (
