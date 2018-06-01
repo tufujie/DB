@@ -1,8 +1,8 @@
 
--- 创建mybatis测试所用数据库
+-- 创建测试所用数据库
 create database all_test;
 
--- 使用这个使句酷
+-- 使用这个数据库
 use all_test;
 
 -- 新建测试用户表
@@ -56,6 +56,7 @@ INSERT INTO `all_test`.`order_product` (`order_id`, `product_name`, `num`) VALUE
 
 INSERT INTO `all_test`.`shop` (`name`) VALUES ('Jef的店铺');
 
+-- 新建测试表
 CREATE TABLE `test_all` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `test_name` varchar(45) DEFAULT NULL COMMENT '测试名称',
