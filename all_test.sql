@@ -65,5 +65,114 @@ CREATE TABLE `test_all` (
   UNIQUE KEY `nameAndPhone` (`test_phone`,`test_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+-- 常用与一些通用的操作
+CREATE TABLE `test_a` (
+  `id` int(11) NOT NULL primary key,
+  `name` varchar(255) NOT NULL COMMENT '水果名称',
+  `season` char(4) NOT NULL DEFAULT '一年四季' COMMENT '水果所属季节'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `test_b` (
+  `id` int(11) NOT NULL primary key,
+  `name` varchar(255) NOT NULL COMMENT '水果名称',
+  `season` char(4) NOT NULL DEFAULT '一年四季' COMMENT '水果所属季节'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO test_a VALUES (1, '苹果', '秋季'); 
+INSERT INTO test_a VALUES (2, '菠萝', '一年四季');  
+INSERT INTO test_a VALUES (3, '橘子', '冬集');  
+INSERT INTO test_a VALUES (4, '西瓜', '夏季');  
+INSERT INTO test_a VALUES (5, '香蕉', '秋季');
+
+INSERT INTO test_b VALUES (1, '香蕉', '秋季'); 
+INSERT INTO test_b VALUES (2, '草莓', '夏季');  
+INSERT INTO test_b VALUES (3, '苹果', '秋季');  
+INSERT INTO test_b VALUES (4, '桃子', '夏季');  
+INSERT INTO test_b VALUES (5, '荔枝', '夏季');
+INSERT INTO test_b VALUES (6, '橙子', '夏季');
+-- 常用于MySQL开发技巧
+-- 学生
+CREATE TABLE `student` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `student_id` bigint(20) NOT NULL COMMENT '学生ID，学号',
+  `student_name` varchar(8) NOT NULL COMMENT '学生名称',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+-- 学生数据
+INSERT INTO `school`.`student` (`student_id`, `student_name`) VALUES ('2012010101', 'Jef');
+INSERT INTO `school`.`student` (`student_id`, `student_name`) VALUES ('2012010102', 'Ran');
+INSERT INTO `school`.`student` (`student_id`, `student_name`) VALUES ('2012010103', 'Dage');
+INSERT INTO `school`.`student` (`student_id`, `student_name`) VALUES ('2012010104', 'Haonan');
+
+-- 学生着装
+CREATE TABLE `student_info` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `student_name` varchar(8) NOT NULL COMMENT '学生名称',
+  `cap` varchar(64) DEFAULT NULL COMMENT '帽子',
+  `clothing` varchar(64) DEFAULT NULL COMMENT '衣服',
+  `pants` varchar(64) DEFAULT NULL COMMENT '裤子',
+  `shoe` varchar(64) DEFAULT NULL COMMENT '鞋子',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+-- 学生着装数据
+INSERT INTO `school`.`student_info` (`student_name`, `cap`, `clothing`, `pants`, `shoe`) VALUES ('Jef', '流行帽', '流行衣', '流行裤', '流行鞋');
+INSERT INTO `school`.`student_info` (`student_name`, `cap`, `clothing`, `pants`, `shoe`) VALUES ('Ran', '复古帽', '复古衣', '复古裤', '复古鞋');
+
+-- 学生分数
+CREATE TABLE `score` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `student_name` varchar(8) NOT NULL COMMENT '学生名称',
+  `course_name` varchar(16) NOT NULL COMMENT '课程名称',
+  `score` tinyint(3) NOT NULL COMMENT '分数',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+-- 学生分数数据
+INSERT INTO `school`.`score` (`student_name`, `course_name`, `score`) VALUES ('Jef', '语文', '90');
+INSERT INTO `school`.`score` (`student_name`, `course_name`, `score`) VALUES ('Jef', '数学', '95');
+INSERT INTO `school`.`score` (`student_name`, `course_name`, `score`) VALUES ('Jef', '英语', '100');
+INSERT INTO `school`.`score` (`student_name`, `course_name`, `score`) VALUES ('Ran', '语文', '100');
+INSERT INTO `school`.`score` (`student_name`, `course_name`, `score`) VALUES ('Ran', '数学', '95');
+INSERT INTO `school`.`score` (`student_name`, `course_name`, `score`) VALUES ('Ran', '英语', '90');
+
+-- 学生购物
+CREATE TABLE `student_shopping` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `student_id` bigint(20) NOT NULL COMMENT '学生ID，学号',
+  `num` int(11) NOT NULL COMMENT '购物种类',
+  `buy_date` date NOT NULL COMMENT '购物日期',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+-- 学生购物数据
+INSERT INTO `school`.`student_shopping` (`student_id`, `num`, `buy_date`) VALUES ('2012010101', 3,  '2018-05-06');
+INSERT INTO `school`.`student_shopping` (`student_id`, `num`, `buy_date`) VALUES ('2012010101', 4, '2018-05-05');
+INSERT INTO `school`.`student_shopping` (`student_id`, `num`, `buy_date`) VALUES ('2012010101', 5, '2018-05-04');
+INSERT INTO `school`.`student_shopping` (`student_id`, `num`, `buy_date`) VALUES ('2012010102', 1, '2018-05-04');
+INSERT INTO `school`.`student_shopping` (`student_id`, `num`, `buy_date`) VALUES ('2012010102', 2, '2018-05-03');
+
+-- 学生技能
+CREATE TABLE `student_skill` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `student_id` bigint(8) NOT NULL COMMENT '学生ID，学号',
+  `skill_name` varchar(16) NOT NULL COMMENT '技能名称',
+  `skill_level` tinyint(2) NOT NULL COMMENT '技能等级',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+-- 学生技能数据
+INSERT INTO `school`.`student_skill` (`student_id`, `skill_name`, `skill_level`) VALUES ('2012010101', 'Java', '4');
+INSERT INTO `school`.`student_skill` (`student_id`, `skill_name`, `skill_level`) VALUES ('2012010101', 'C++', '3');
+INSERT INTO `school`.`student_skill` (`student_id`, `skill_name`, `skill_level`) VALUES ('2012010102', 'HTML', '2');
+INSERT INTO `school`.`student_skill` (`student_id`, `skill_name`, `skill_level`) VALUES ('2012010102', 'CSS', '1');
+
+-- 学生兴趣爱好
+CREATE TABLE `interest` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `student_name` varchar(8) NOT NULL COMMENT '学生名称',
+  `interesting` varchar(64) NOT NULL COMMENT '兴趣爱好',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+-- 学生兴趣爱好数据
+INSERT INTO `school`.`interest` (`student_name`, `interesting`) VALUES ('Jef', '篮球,羽毛球,乒乓球,游泳');
+INSERT INTO `school`.`interest` (`student_name`, `interesting`) VALUES ('Ran', '篮球,乒乓球,台球');
+INSERT INTO `school`.`interest` (`student_name`, `interesting`) VALUES ('Dage', '篮球,乓乓球,台球');
 
 
