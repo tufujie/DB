@@ -17,11 +17,11 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- 插入测试数据
-INSERT INTO `all_test`.`user` (`name`, `password`, `phone`, `age`) VALUES ('Jef', 'e10adc3949ba59abbe56e057f20f883e', '18390220001', 20);
-INSERT INTO `all_test`.`user` (`name`, `password`, `phone`, `age`) VALUES ('Ran', 'e10adc3949ba59abbe56e057f20f883e','18390220002', 19);
+INSERT INTO `user` (`name`, `password`, `phone`, `age`) VALUES ('Jef', 'e10adc3949ba59abbe56e057f20f883e', '18390220001', 20);
+INSERT INTO `user` (`name`, `password`, `phone`, `age`) VALUES ('Ran', 'e10adc3949ba59abbe56e057f20f883e','18390220002', 19);
 
 -- 新建测试订单表
-CREATE TABLE all_test.`order_info` (
+CREATE TABLE `order_info` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT comment '系统订单ID',
   `extra_order_id` varchar(32) NOT NULL COMMENT '第三方订单ID',
   `shop_id` bigint(20) NOT NULL COMMENT '系统店铺ID',
@@ -31,7 +31,7 @@ CREATE TABLE all_test.`order_info` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- 新建测试子订单表
-CREATE TABLE all_test.`order_product` (
+CREATE TABLE `order_product` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT comment '系统子订单ID',
   `order_id` bigint(20) NOT NULL COMMENT '系统订单ID',
   `product_name` varchar(32) NOT NULL COMMENT '商品名称',
@@ -41,20 +41,20 @@ CREATE TABLE all_test.`order_product` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- 新建测试店铺信息
-CREATE TABLE all_test.`shop` (
+CREATE TABLE `shop` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT comment '系统店铺ID',
   `name` varchar(32) NOT NULL COMMENT '店铺名称',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- 添加订单、子订单、店铺数据
-INSERT INTO `all_test`.`order_info` (`extra_order_id`, `shop_id`, `user_id`) VALUES ('123456789', '1', '1');
+INSERT INTO `order_info` (`extra_order_id`, `shop_id`, `user_id`) VALUES ('123456789', '1', '1');
 
-INSERT INTO `all_test`.`order_product` (`order_id`, `product_name`, `num`) VALUES ('1', '袜子', '3');
-INSERT INTO `all_test`.`order_product` (`order_id`, `product_name`, `num`) VALUES ('1', '鞋子', '2');
-INSERT INTO `all_test`.`order_product` (`order_id`, `product_name`, `num`) VALUES ('1', '短袖', '1');
+INSERT INTO `order_product` (`order_id`, `product_name`, `num`) VALUES ('1', '袜子', '3');
+INSERT INTO `order_product` (`order_id`, `product_name`, `num`) VALUES ('1', '鞋子', '2');
+INSERT INTO `order_product` (`order_id`, `product_name`, `num`) VALUES ('1', '短袖', '1');
 
-INSERT INTO `all_test`.`shop` (`name`) VALUES ('Jef的店铺');
+INSERT INTO `shop` (`name`) VALUES ('Jef的店铺');
 
 -- 新建测试表
 CREATE TABLE `test_all` (
@@ -99,13 +99,13 @@ CREATE TABLE `student` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 -- 学生数据
-INSERT INTO `school`.`student` (`student_id`, `student_name`) VALUES ('2012010101', 'Jef');
-INSERT INTO `school`.`student` (`student_id`, `student_name`) VALUES ('2012010102', 'Ran');
-INSERT INTO `school`.`student` (`student_id`, `student_name`) VALUES ('2012010103', 'Dage');
-INSERT INTO `school`.`student` (`student_id`, `student_name`) VALUES ('2012010104', 'Haonan');
+INSERT INTO `student` (`student_id`, `student_name`) VALUES ('2012010101', 'Jef');
+INSERT INTO `student` (`student_id`, `student_name`) VALUES ('2012010102', 'Ran');
+INSERT INTO `student` (`student_id`, `student_name`) VALUES ('2012010103', 'Dage');
+INSERT INTO `student` (`student_id`, `student_name`) VALUES ('2012010104', 'Haonan');
 
 -- 学生着装
-CREATE TABLE `student_info` (
+CREATE TABLE `student_dress` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `student_name` varchar(8) NOT NULL COMMENT '学生名称',
   `cap` varchar(64) DEFAULT NULL COMMENT '帽子',
@@ -115,8 +115,8 @@ CREATE TABLE `student_info` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 -- 学生着装数据
-INSERT INTO `school`.`student_info` (`student_name`, `cap`, `clothing`, `pants`, `shoe`) VALUES ('Jef', '流行帽', '流行衣', '流行裤', '流行鞋');
-INSERT INTO `school`.`student_info` (`student_name`, `cap`, `clothing`, `pants`, `shoe`) VALUES ('Ran', '复古帽', '复古衣', '复古裤', '复古鞋');
+INSERT INTO `student_dress` (`student_name`, `cap`, `clothing`, `pants`, `shoe`) VALUES ('Jef', '流行帽', '流行衣', '流行裤', '流行鞋');
+INSERT INTO `student_dress` (`student_name`, `cap`, `clothing`, `pants`, `shoe`) VALUES ('Ran', '复古帽', '复古衣', '复古裤', '复古鞋');
 
 -- 学生分数
 CREATE TABLE `score` (
@@ -127,12 +127,12 @@ CREATE TABLE `score` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 -- 学生分数数据
-INSERT INTO `school`.`score` (`student_name`, `course_name`, `score`) VALUES ('Jef', '语文', '90');
-INSERT INTO `school`.`score` (`student_name`, `course_name`, `score`) VALUES ('Jef', '数学', '95');
-INSERT INTO `school`.`score` (`student_name`, `course_name`, `score`) VALUES ('Jef', '英语', '100');
-INSERT INTO `school`.`score` (`student_name`, `course_name`, `score`) VALUES ('Ran', '语文', '100');
-INSERT INTO `school`.`score` (`student_name`, `course_name`, `score`) VALUES ('Ran', '数学', '95');
-INSERT INTO `school`.`score` (`student_name`, `course_name`, `score`) VALUES ('Ran', '英语', '90');
+INSERT INTO `score` (`student_name`, `course_name`, `score`) VALUES ('Jef', '语文', '90');
+INSERT INTO `score` (`student_name`, `course_name`, `score`) VALUES ('Jef', '数学', '95');
+INSERT INTO `score` (`student_name`, `course_name`, `score`) VALUES ('Jef', '英语', '100');
+INSERT INTO `score` (`student_name`, `course_name`, `score`) VALUES ('Ran', '语文', '100');
+INSERT INTO `score` (`student_name`, `course_name`, `score`) VALUES ('Ran', '数学', '95');
+INSERT INTO `score` (`student_name`, `course_name`, `score`) VALUES ('Ran', '英语', '90');
 
 -- 学生购物
 CREATE TABLE `student_shopping` (
@@ -143,11 +143,11 @@ CREATE TABLE `student_shopping` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 -- 学生购物数据
-INSERT INTO `school`.`student_shopping` (`student_id`, `num`, `buy_date`) VALUES ('2012010101', 3,  '2018-05-06');
-INSERT INTO `school`.`student_shopping` (`student_id`, `num`, `buy_date`) VALUES ('2012010101', 4, '2018-05-05');
-INSERT INTO `school`.`student_shopping` (`student_id`, `num`, `buy_date`) VALUES ('2012010101', 5, '2018-05-04');
-INSERT INTO `school`.`student_shopping` (`student_id`, `num`, `buy_date`) VALUES ('2012010102', 1, '2018-05-04');
-INSERT INTO `school`.`student_shopping` (`student_id`, `num`, `buy_date`) VALUES ('2012010102', 2, '2018-05-03');
+INSERT INTO `student_shopping` (`student_id`, `num`, `buy_date`) VALUES ('2012010101', 3,  '2018-05-06');
+INSERT INTO `student_shopping` (`student_id`, `num`, `buy_date`) VALUES ('2012010101', 4, '2018-05-05');
+INSERT INTO `student_shopping` (`student_id`, `num`, `buy_date`) VALUES ('2012010101', 5, '2018-05-04');
+INSERT INTO `student_shopping` (`student_id`, `num`, `buy_date`) VALUES ('2012010102', 1, '2018-05-04');
+INSERT INTO `student_shopping` (`student_id`, `num`, `buy_date`) VALUES ('2012010102', 2, '2018-05-03');
 
 -- 学生技能
 CREATE TABLE `student_skill` (
@@ -158,10 +158,10 @@ CREATE TABLE `student_skill` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 -- 学生技能数据
-INSERT INTO `school`.`student_skill` (`student_id`, `skill_name`, `skill_level`) VALUES ('2012010101', 'Java', '4');
-INSERT INTO `school`.`student_skill` (`student_id`, `skill_name`, `skill_level`) VALUES ('2012010101', 'C++', '3');
-INSERT INTO `school`.`student_skill` (`student_id`, `skill_name`, `skill_level`) VALUES ('2012010102', 'HTML', '2');
-INSERT INTO `school`.`student_skill` (`student_id`, `skill_name`, `skill_level`) VALUES ('2012010102', 'CSS', '1');
+INSERT INTO `student_skill` (`student_id`, `skill_name`, `skill_level`) VALUES ('2012010101', 'Java', '4');
+INSERT INTO `student_skill` (`student_id`, `skill_name`, `skill_level`) VALUES ('2012010101', 'C++', '3');
+INSERT INTO `student_skill` (`student_id`, `skill_name`, `skill_level`) VALUES ('2012010102', 'HTML', '2');
+INSERT INTO `student_skill` (`student_id`, `skill_name`, `skill_level`) VALUES ('2012010102', 'CSS', '1');
 
 -- 学生兴趣爱好
 CREATE TABLE `interest` (
@@ -171,8 +171,8 @@ CREATE TABLE `interest` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 -- 学生兴趣爱好数据
-INSERT INTO `school`.`interest` (`student_name`, `interesting`) VALUES ('Jef', '篮球,羽毛球,乒乓球,游泳');
-INSERT INTO `school`.`interest` (`student_name`, `interesting`) VALUES ('Ran', '篮球,乒乓球,台球');
-INSERT INTO `school`.`interest` (`student_name`, `interesting`) VALUES ('Dage', '篮球,乓乓球,台球');
+INSERT INTO `interest` (`student_name`, `interesting`) VALUES ('Jef', '篮球,羽毛球,乒乓球,游泳');
+INSERT INTO `interest` (`student_name`, `interesting`) VALUES ('Ran', '篮球,乒乓球,台球');
+INSERT INTO `interest` (`student_name`, `interesting`) VALUES ('Dage', '篮球,乓乓球,台球');
 
 
