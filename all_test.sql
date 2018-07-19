@@ -90,6 +90,8 @@ INSERT INTO test_b VALUES (3, '苹果', '秋季');
 INSERT INTO test_b VALUES (4, '桃子', '夏季');  
 INSERT INTO test_b VALUES (5, '荔枝', '夏季');
 INSERT INTO test_b VALUES (6, '橙子', '夏季');
+INSERT INTO test_b VALUES (7, '香蕉', '秋季');
+INSERT INTO test_b VALUES (8, '苹果', '夏季'); 
 -- 常用于MySQL开发技巧
 -- 学生
 CREATE TABLE `student` (
