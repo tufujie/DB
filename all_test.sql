@@ -12,6 +12,8 @@ CREATE TABLE `user` (
   `password` varchar(48) NOT NULL DEFAULT 'e10adc3949ba59abbe56e057f20f883e' COMMENT '加密后的密码',
   `phone` varchar(20) NOT NULL COMMENT '手机号码',
   `age` smallint(3) NOT NULL COMMENT '年龄',
+  `permission` smallint(1) DEFAULT 0 COMMENT '是否授权，0表示未授权，1表示已授权',
+  `admin` smallint(1) DEFAULT 0 COMMENT '是否管理员，0表示未授权，1表示已授权',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name_phone` (`name`,`phone`) COMMENT '一个人可能有多个手机号码'
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
@@ -19,6 +21,9 @@ CREATE TABLE `user` (
 -- 插入测试数据
 INSERT INTO `user` (`name`, `password`, `phone`, `age`) VALUES ('Jef', 'e10adc3949ba59abbe56e057f20f883e', '18390220001', 20);
 INSERT INTO `user` (`name`, `password`, `phone`, `age`) VALUES ('Ran', 'e10adc3949ba59abbe56e057f20f883e','18390220002', 19);
+
+-- 设置管理员
+UPDATE `all_test`.`user` SET `admin`='1' WHERE `id`='1';
 
 -- 新建测试订单表
 CREATE TABLE `order_info` (
