@@ -182,4 +182,65 @@ INSERT INTO `interest` (`student_name`, `interesting`) VALUES ('Jef', '篮球,�
 INSERT INTO `interest` (`student_name`, `interesting`) VALUES ('Ran', '篮球,乒乓球,台球');
 INSERT INTO `interest` (`student_name`, `interesting`) VALUES ('Dage', '篮球,乓乓球,台球');
 
+-- 部门表
+CREATE TABLE dept(
+id bigint(20) PRIMARY KEY auto_increment,
+no MEDIUMINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '部门编号',
+name VARCHAR(20) NOT NULL DEFAULT '部门名称',
+loc VARCHAR(13) NOT NULL DEFAULT '部门地点'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ;
 
+-- 部门数据
+INSERT INTO dept(no, name, loc) values(1, '研发部', '大厦10楼1001');
+INSERT INTO dept(no, name, loc) values(2, '测试部', '大厦10楼1002');
+INSERT INTO dept(no, name, loc) values(3, '产品部', '大厦10楼1003');
+INSERT INTO dept(no, name, loc) values(4, '运营部', '大厦10楼1004');
+INSERT INTO dept(no, name, loc) values(5, '财务部', '大厦10楼1005');
+
+-- 构建大表->大表中数据有要求, 记录是不同才有用，否则测试效果和真实的相差大，如下
+-- 员工表
+CREATE TABLE emp(
+id bigint(20) PRIMARY KEY auto_increment,
+no MEDIUMINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '员工编号',
+name VARCHAR(20) NOT NULL DEFAULT "" COMMENT '员工姓名',
+en_name VARCHAR(20) NOT NULL DEFAULT "" COMMENT '员工英文名',
+job VARCHAR(9) NOT NULL DEFAULT "" COMMENT '员工工作',
+level VARCHAR(6) NOT NULL DEFAULT "" COMMENT '员工级别',
+mgr MEDIUMINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '上级编号',
+hiredate DATE NOT NULL COMMENT '入职时间',
+sal DECIMAL(7,2) NOT NULL COMMENT '薪资',
+comm DECIMAL(7,2) NOT NULL COMMENT '红利',
+dept_no MEDIUMINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '部门编号'
+)ENGINE=MyISAM DEFAULT CHARSET=utf8 ;
+
+-- 创建函数，该函数会返回一个指定长度的随机字符串
+CREATE FUNCTION `rand_string`(n INT) RETURNS varchar(255) CHARSET utf8
+BEGIN
+DECLARE chars_str VARCHAR(100) DEFAULT 'abcdefghijklmnopqrstuvwxyzABCDEFJHIJKLMNOPQRSTUVWXYZ';
+DECLARE return_str VARCHAR(255) DEFAULT '';
+DECLARE i INT default 0;
+-- 每次取随机一个字母，取n个
+WHILE i < n DO 
+SET return_str = concat(return_str, substring(chars_str, floor(1+rand() * 52), 1));
+SET i = i + 1;
+END WHILE;
+RETURN return_str;
+END
+
+-- 创建一个存储过程，用于生成员工信息
+CREATE PROCEDURE insert_emp(start INT(10), num INT(10), dept_num INT(2))
+-- start开始员工号，num员工数量，dept_num部门数量
+BEGIN
+DECLARE i INT DEFAULT 0; 
+#SET autocommit = 0 把autocommit设置成0
+SET autocommit = 0; 
+REPEAT
+INSERT INTO emp(no, name, en_name, job, level, mgr, hiredate, sal, comm, dept_no) VALUES((start+i), rand_string(6), rand_string(3), 'SALESMAN', 'T1-1', 0001, curdate(), 5000, 400, rand() * (dept_num - 1) + 1 );
+SET i = i + 1;
+UNTIL i = num
+END repeat;
+COMMIT;
+END
+
+#调用刚刚写好的函数, 6000000条记录，从100001号开始，最终max(no) = 6100000
+CALL insert_emp(100001, 6000000, 5);
