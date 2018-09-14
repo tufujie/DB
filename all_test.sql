@@ -66,6 +66,7 @@ CREATE TABLE `test_all` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `test_name` varchar(45) DEFAULT NULL COMMENT '测试名称',
   `test_phone` varchar(45) DEFAULT NULL COMMENT '测试电话',
+  `createTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nameAndPhone` (`test_phone`,`test_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
