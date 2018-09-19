@@ -41,6 +41,7 @@ CREATE TABLE `order_product` (
   `order_id` bigint(20) NOT NULL COMMENT '系统订单ID',
   `product_name` varchar(32) NOT NULL COMMENT '商品名称',
   `num` smallint(4) NOT NULL COMMENT '数量',
+  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建日期',
   PRIMARY KEY (`id`),
   UNIQUE KEY `order_productName` (`order_id`,`product_name`) COMMENT '同一个订单商品名称不重'
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
