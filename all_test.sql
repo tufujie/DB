@@ -248,3 +248,20 @@ END
 
 #调用刚刚写好的函数, 6000000条记录，从100001号开始，最终max(no) = 6100000
 CALL insert_emp(100001, 6000000, 5);
+
+-- 用于测试group by
+create table test_group_by
+(
+id varchar(20),
+b varchar(20),
+c varchar(20)
+);
+
+insert into test_group_by values(1, 'A', '甲');
+insert into test_group_by values(2, 'A', '甲');
+insert into test_group_by values(3, 'A', '甲');
+insert into test_group_by values(4, 'A', '乙');
+insert into test_group_by values(5, 'A', '乙');
+insert into test_group_by values(6, 'B', '乙');
+insert into test_group_by values(7, 'B', '乙');
+insert into test_group_by values(8, 'B', '丙');
